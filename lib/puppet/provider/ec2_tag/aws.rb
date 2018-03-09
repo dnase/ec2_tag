@@ -1,8 +1,9 @@
-require 'aws-sdk'
 require 'yaml'
 
 Puppet::Type.type(:ec2_tag).provide :aws do
   desc "Provider to set EC2 tags on AWS"
+
+  confine :feature => :aws_sdk
 
   def create
     ec2.create_tags({
